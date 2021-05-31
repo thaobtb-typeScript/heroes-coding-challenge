@@ -1,7 +1,9 @@
 <h1>{{title}}</h1>
 <nav>
-  <a routerLink="/dashboard">Dashboard</a>
-  <a routerLink="/heroes">Heroes</a>
+  <a routerLink="/dashboard" routerLinkActive="active-link">Dashboard</a>
+  <a routerLink="/heroes" routerLinkActive="active-link">Heroes</a>
+  <a routerLink="/weapons" routerLinkActive="active-link">Weapons</a>
+  <a routerLink="/armours" routerLinkActive="active-link">Armours</a>
 </nav>
 <router-outlet></router-outlet>
 <app-messages></app-messages>

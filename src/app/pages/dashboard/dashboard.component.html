@@ -1,0 +1,30 @@
+<h2>Top Heroes</h2>
+<div class="heroes-menu">
+  <button class="btn" *ngFor="let hero of heroes" (click)="onClickHero(hero)">{{hero.name}}</button>
+</div>
+<div id="container"></div>
+<div class="modal fade" tabindex="-1" role="dialog" id="modal-edit" [ngClass]="clickedHero && clickedHero.id ? 'show' : ''">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title">Update Weapon's Hero</h3>
+        <button type="button" class="close" (click)="onCLickCancel()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+        <label class="col-form-label">Weapon: </label>
+        <select class="form-select" [(ngModel)]="clickedHero!.weapon">
+          <option [value]="undefined">Choosing a Weapon for Your Hero</option>
+          <option *ngFor="let weapon of weapons" [ngValue]="weapon">{{weapon.name}}</option>
+        </select>
+      </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn" (click)="onClickUpdate()">Save</button>
+        <button type="button" class="btn btn-secondary"(click)="onCLickCancel()">Close</button>
+      </div>
+    </div>
+  </div>
+</div>

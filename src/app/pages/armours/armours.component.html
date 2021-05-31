@@ -1,0 +1,22 @@
+<div class="row mt-2">
+  <div class="col-left">
+    <app-common-list [title]="'Armours'" [dataList]="armours" (clickItem)="selectedArmour = $event"></app-common-list>
+  </div>
+  <div class="col-right">
+    <ng-container *ngIf="selectedArmour">
+      <h2>Details</h2>
+      <div class="row">
+        <label class="col-form-label">Id:</label>
+        <span class="col-form-label">{{selectedArmour.id}}</span>
+      </div>
+      <div class="row">
+        <label class="col-form-label">Weapon name:</label>
+        <span class="col-form-label">{{selectedArmour.name}}</span>
+      </div>
+      <div class="row">
+        <label class="col-form-label">Damage: </label>
+        <span class="col-form-label">{{selectedArmour.health}}</span>
+      </div>
+    </ng-container>
+  </div>
+</div>

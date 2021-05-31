@@ -1,0 +1,45 @@
+<ng-container *ngIf="hero">
+  <h2>{{heroName | uppercase}} Details</h2>
+  <div class="row">
+    <div class="col-left">
+      <div class="row">
+        <label class="col-form-label">Id:</label>
+        <span class="col-form-label">{{hero.id}}</span>
+      </div>
+      <div class="row">
+        <label for="hero-name" class="col-form-label">Hero name:</label>
+        <div class="input-name">
+          <input class="form-control" id="hero-name" [(ngModel)]="hero.name" placeholder="Hero name"/>
+        </div>
+      </div>
+      <div class="row">
+        <label class="col-form-label">Weapon: </label>
+        <select class="form-select" [(ngModel)]="hero.weapon">
+          <option [value]="undefined">Choosing a Weapon for Your Hero</option>
+          <option *ngFor="let weapon of weapons" [ngValue]="weapon">{{weapon.name}}</option>
+        </select>
+      </div>
+      <div class="row">
+        <label class="col-form-label">Armour: </label>
+        <select class="form-select" [(ngModel)]="hero.armour" (ngModelChange)="onUpdateHealthHero()">
+          <option [value]="undefined">Choosing a Armour for Your Hero</option>
+          <option *ngFor="let armour of armours" [ngValue]="armour">{{armour.name}}</option>
+        </select>
+      </div>
+      <div class="row">
+        <label class="col-form-label">Upload Image: </label>
+        <input type="file" accept="image/*" #file (change)="imagePreview(file.files)">
+      </div>
+    </div>
+    <div class="col-right" *ngIf="hero.imageSrc">
+      <div class="img-preview-wrapper">
+        <button type="button" class="icon-remove close" aria-label="Close" (click)="onRemoveImg(file)">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <img [src]="hero.imageSrc | noSanitize">
+      </div>
+    </div>
+  </div>
+  <button class="btn-success" (click)="onSave()">Update</button>
+  <button (click)="goBack()">go back</button>
+</ng-container>
