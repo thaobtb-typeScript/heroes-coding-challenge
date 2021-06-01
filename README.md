@@ -1,3 +1,10 @@
+# Report
+It took me nearly 9 hours to complete this test.
+
+Some problems are expected to improve:
+- Be able to change information and add weapon & armour images in their detail screens
+- Display information of hero when hovering over images on canvas
+
 # The contest
 
 We are looking to contract the best freelancers in the world for our interactive story building site.   We have designed a coding challenge to help us find the best coders on Freelancer.  
