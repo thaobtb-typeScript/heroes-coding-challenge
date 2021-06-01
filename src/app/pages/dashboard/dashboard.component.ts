@@ -6,6 +6,7 @@ import Konva from 'konva';
 import { Subscription, timer } from 'rxjs';
 import { WeaponService } from '../../services/weapon.service';
 import { Weapon } from '../../models/weapon';
+import { defaultImages } from '../../common/constant';
 
 @Component({
   selector: 'app-dashboard',
@@ -25,7 +26,6 @@ export class DashboardComponent implements OnInit, AfterViewInit, OnDestroy {
   layer = new Konva.Layer();
   infoHeroes!: any;
   clickedHero: Hero = {} as Hero;
-  private defaultImages = ['/assets/img/img_1.png', '/assets/img/img_2.png'];
   private timerSubscription!: Subscription;
 
   constructor(
@@ -40,6 +40,10 @@ export class DashboardComponent implements OnInit, AfterViewInit, OnDestroy {
       subscription.unsubscribe();
       subscription = null;
     }
+  }
+
+  private getDefaultImg() {
+    return defaultImages[Math.floor(Math.random() * defaultImages.length)];
   }
 
   ngOnInit() {
@@ -72,10 +76,7 @@ export class DashboardComponent implements OnInit, AfterViewInit, OnDestroy {
     });
   }
 
-  getDefaultImg() {
-    return this.defaultImages[Math.floor(Math.random() * (this.defaultImages.length - 1))];
-  }
-
+  // show image with hero's name on canvas
   drawImage(hero: Hero, imageObj: any) {
     const clonedHero = Object.assign({}, hero);
     const group = new Konva.Group({
@@ -100,6 +101,7 @@ export class DashboardComponent implements OnInit, AfterViewInit, OnDestroy {
       fill: 'green',
     });
 
+    // listen heroImg click event
     heroImg.on('click', (evt) => {
       this.getWeapons();
       this.clickedHero = Object.assign({}, clonedHero);
@@ -115,6 +117,7 @@ export class DashboardComponent implements OnInit, AfterViewInit, OnDestroy {
     }
   }
 
+  // add hero's info on canvas
   getText() {
     let textContent = '';
     this.selectedHeroesList.forEach(item => {
@@ -143,6 +146,7 @@ export class DashboardComponent implements OnInit, AfterViewInit, OnDestroy {
     this.layer.add(this.infoHeroes);
   }
 
+  // add hero to battle
   onClickHero(hero: Hero) {
     const index = this.selectedHeroesList.findIndex(h => h.heroObject.id === hero.id);
     if (index > -1) {
@@ -184,7 +188,8 @@ export class DashboardComponent implements OnInit, AfterViewInit, OnDestroy {
     });
   }
 
-  onClickUpdate() {
+  // update weapon the current battle
+  onClickUpdateWeapon() {
     $('body').removeClass('modal-open');
     if (this.clickedHero && this.clickedHero.id) {
       const index = this.selectedHeroesList.findIndex(item => item.heroObject.id === this.clickedHero.id);
