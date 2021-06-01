@@ -11,7 +11,6 @@ import { WeaponsComponent } from './pages/weapons/weapons.component';
 import { ArmoursComponent } from './pages/armours/armours.component';
 
 import { AppRoutingModule } from './app-routing.module';
-import { KonvaModule } from 'ng2-konva';
 import { CommonListComponent } from './components/common-list/common-list.component';
 import { NoSanitizePipe } from './common/no-sanitize.pipe';
 
@@ -19,8 +18,7 @@ import { NoSanitizePipe } from './common/no-sanitize.pipe';
   imports: [
     BrowserModule,
     FormsModule,
-    AppRoutingModule,
-    KonvaModule
+    AppRoutingModule
   ],
   declarations: [
     AppComponent,
